@@ -21,7 +21,11 @@ onUnmounted(() => {
 <template>
     <section class="about-me">
         <div class="left-content">
-            <img src="img/portada.webp" alt="Sohad Aziz" :class="{ animation: isVisible }" />
+            <img
+                src="../assets/img/portada.webp"
+                alt="Sohad Aziz"
+                :class="{ animation: isVisible }"
+            />
         </div>
         <div class="right-content">
             <h2>Sobre mi</h2>

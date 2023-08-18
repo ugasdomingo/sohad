@@ -3,14 +3,14 @@
 <template>
     <!-- Hero img -->
     <section class="hero-section">
-        <img src="public/img/hero.webp" alt="Hero" class="img-hero-big" />
+        <img src="../assets/img/hero.webp" alt="Hero" class="img-hero-big" />
         <div class="left-content">
             <h6>Formación en Medicina Estética</h6>
             <h1>Dra. Sohad Aziz</h1>
             <p>Mantente a la vanguardia de los tratamientos estéticos no quirúrgicos</p>
         </div>
         <div class="right-content">
-            <img src="public/img/dra-portada-sf.webp" alt="foto-doctora" />
+            <img src="../assets/img/dra-portada-sf.webp" alt="foto-doctora" />
         </div>
     </section>
 </template>
