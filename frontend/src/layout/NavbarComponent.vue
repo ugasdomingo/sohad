@@ -25,7 +25,7 @@ onUnmounted(() => {
 
 <template>
     <nav :class="{ 'background-white': backgroundWhite }">
-        <img class="logo" src="public/img/logo-pequeño.webp" alt="Logo" />
+        <img class="logo" src="../assets/img/logo-pequeño.webp" alt="Logo" />
         <div class="navegation">
             <a href="#cursos">Cursos</a>
             <a href="#nosotros">Sobre mi</a>
