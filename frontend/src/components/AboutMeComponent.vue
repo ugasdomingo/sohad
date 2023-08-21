@@ -7,19 +7,19 @@ const isVisible = ref(false);
 
 onMounted(() => {
     window.addEventListener('scroll', () => {
-        isVisible.value = window.scrollY > 600;
+        isVisible.value = window.scrollY > 1600;
     });
 });
 
 onUnmounted(() => {
     window.removeEventListener('scroll', () => {
-        isVisible.value = window.scrollY > 600;
+        isVisible.value = window.scrollY > 1600;
     });
 });
 </script>
 
 <template>
-    <section class="about-me">
+    <section class="about-me" id="nosotros">
         <div class="left-content">
             <img
                 src="../assets/img/portada.webp"
@@ -47,11 +47,12 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .about-me {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 4rem 2rem;
+    padding: 4rem 2rem 0;
     line-height: 1.5;
     h2 {
         font-size: 5rem;
@@ -93,6 +94,32 @@ onUnmounted(() => {
     100% {
         opacity: 1;
         transform: translate(0);
+    }
+}
+
+//Responsive
+@media screen and (max-width: 768px) {
+    .about-me {
+        flex-direction: column;
+        padding: 1rem;
+
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 0;
+        }
+        .right-content {
+            width: 100%;
+        }
+        .left-content {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            img {
+                max-height: 300px;
+                object-fit: cover;
+            }
+        }
     }
 }
 </style>

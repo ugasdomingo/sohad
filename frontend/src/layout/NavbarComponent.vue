@@ -1,70 +1,21 @@
 <script setup lang="ts">
-//Import tools
-import { onMounted, onUnmounted, ref } from 'vue';
-
-const backgroundWhite = ref(false);
-
-//Functions
-const changeBackground = () => {
-    if (window.scrollY > 10) {
-        backgroundWhite.value = true;
-    } else {
-        backgroundWhite.value = false;
+defineProps({
+    menuType: {
+        type: String,
+        required: true
     }
-};
-
-//Hooks
-onMounted(() => {
-    window.addEventListener('scroll', changeBackground);
-});
-
-onUnmounted(() => {
-    window.removeEventListener('scroll', changeBackground);
 });
 </script>
 
 <template>
-    <nav :class="{ 'background-white': backgroundWhite }">
-        <img class="logo" src="../assets/img/logo-pequeño.webp" alt="Logo" />
-        <div class="navegation">
-            <a href="#cursos">Cursos</a>
-            <a href="#nosotros">Sobre mi</a>
-            <a href="#contacto">Contacto</a>
-        </div>
+    <nav :class="menuType == 'normal' ? 'navegation' : 'responsive'">
+        <a href="#cursos">Cursos</a>
+        <a href="#nosotros">Sobre mi</a>
+        <a href="#contacto">Contacto</a>
     </nav>
 </template>
 
 <style scoped lang="scss">
-nav {
-    max-height: 5.5rem;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    position: fixed;
-    top: 0;
-    z-index: 10;
-
-    img {
-        max-width: 80px;
-        object-fit: cover;
-    }
-}
-.background-white {
-    background-color: rgba(255, 255, 255, 0.877);
-    box-shadow: 0 0 1em var(--color-tertiary);
-}
-.logo {
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em var(--color-tertiary));
-}
-
 .navegation {
     display: flex;
     justify-content: space-between;
@@ -85,5 +36,27 @@ nav {
         background-color: var(--color-accent);
         color: white;
     }
+}
+
+.responsive {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--color-primary);
+    border-radius: 1rem;
+    transform: translateX(-20%);
+    transition: transform 300ms;
+    position: fixed;
+    padding: 1.5rem 0.5rem;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 10;
+}
+
+.responsive a {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 0 2rem;
 }
 </style>

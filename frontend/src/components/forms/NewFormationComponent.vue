@@ -146,4 +146,14 @@ const handleSubmit = async () => {
         }
     }
 }
+
+//Responsive
+@media screen and (max-width: 768px) {
+    //Scroll modal
+    .create-course {
+        width: 100%;
+        overflow-y: scroll;
+        max-height: 80vh;
+    }
+}
 </style>

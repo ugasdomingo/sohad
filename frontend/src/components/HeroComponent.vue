@@ -106,4 +106,29 @@
         transform: translate(0);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        height: auto;
+        padding: 5.5rem 1rem 0;
+    }
+    .left-content {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2rem;
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h6 {
+            font-size: 1.2rem;
+        }
+    }
+    .right-content {
+        width: 100%;
+        text-align: center;
+    }
+}
 </style>

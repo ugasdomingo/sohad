@@ -21,7 +21,6 @@ const closeModal = () => {
 <template>
     <transition name="modal-fade">
         <div class="modal" v-if="utilsStore.authModal">
-            <p>{{ utilsStore.authModal }}</p>
             <div class="modal-content">
                 <span class="close" @click="closeModal">&times;</span>
                 <NewFormationComponent v-if="userStore.userRole == 'Admin'" />
@@ -43,19 +42,22 @@ const closeModal = () => {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
+    margin: 0;
 
     .modal-content {
         background-color: white;
         padding: 2rem;
         border-radius: 0.5rem;
         width: 50%;
-        min-width: 20rem;
+        min-width: 50%;
         max-width: 40rem;
+        margin: 0;
         box-shadow: 0 0 1em var(--color-tertiary);
 
         h2 {

@@ -3,7 +3,7 @@
 import { useUtilsStore } from './stores/utils-store';
 
 // Import components
-import NavbarComponent from './layout/NavbarComponent.vue';
+import HeaderComponent from './layout/HeaderComponent.vue';
 import HeroComponent from './components/HeroComponent.vue';
 import AuthModalComponent from './common/modals/AuthModalComponent.vue';
 import CoursesComponent from './components/CoursesComponent.vue';
@@ -16,7 +16,7 @@ const utilsStore = useUtilsStore();
 </script>
 
 <template>
-    <NavbarComponent />
+    <HeaderComponent />
     <main>
         <HeroComponent />
         <AuthModalComponent v-if="utilsStore.authModal" />
@@ -27,4 +27,9 @@ const utilsStore = useUtilsStore();
     <FooterComponent />
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+    width: 100%;
+    box-sizing: border-box;
+}
+</style>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
-//Import tools
-import { onBeforeMount } from 'vue';
-import { useCourseStore } from '../stores/course-store';
+// Import tool
+import { coursesInfo } from '../static/coursesInfo';
 
 // Import components
 import CardCourseComponent from '../common/CardCourseComponent.vue';
+/* //Import tools
+import { onBeforeMount } from 'vue';
+import { useCourseStore } from '../stores/course-store';
+
 
 // Activate tools
 const courseStore = useCourseStore();
@@ -12,27 +15,27 @@ const courseStore = useCourseStore();
 // Fetch data
 onBeforeMount(() => {
     courseStore.getAllCourse(3);
-});
+}); */
 </script>
 
 <template>
-    <section class="courses">
+    <section class="courses" id="cursos">
         <h2>Cursos Disponibles</h2>
-        <div class="card-container">
-            <div v-for="course in courseStore.allCourse" :key="course.id">
-                <CardCourseComponent :curso="course" />
-            </div>
+        <div v-for="course in coursesInfo" :key="course.id" class="card-container">
+            <CardCourseComponent :curso="course" />
         </div>
     </section>
 </template>
 
 <style scoped lang="scss">
 .courses {
-    widows: 100%;
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 1rem;
     margin: 2rem 0;
     h2 {
         font-size: 5rem;
@@ -44,10 +47,19 @@ onBeforeMount(() => {
 .card-container {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+    .courses {
+        h2 {
+            font-size: 3rem;
+            text-align: center;
+        }
+    }
 }
 </style>

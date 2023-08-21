@@ -60,4 +60,24 @@ footer {
     display: flex;
     justify-content: space-between;
 }
+
+//Responsive
+@media screen and (max-width: 768px) {
+    footer {
+        padding: 0 0.5rem;
+
+        h2 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            font-size: 0.6rem;
+        }
+
+        button {
+            font-size: 0.6rem;
+            padding: 0.5rem 0.75rem;
+        }
+    }
+}
 </style>
