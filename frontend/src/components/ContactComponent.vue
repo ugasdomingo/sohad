@@ -6,20 +6,16 @@
         <h2>Contáctame</h2>
         <div class="icon-container">
             <a
-                href="https://www.instagram.com/sohadaziz/"
+                href="https://www.instagram.com/estheticsohad"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 <img src="../assets/instagram.svg" alt="Instagram" />
             </a>
-            <a href="https://wa.me/573016000000" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/584126696619" target="_blank" rel="noopener noreferrer">
                 <img src="../assets/whatsapp.svg" alt="WhatsApp" />
             </a>
-            <a
-                href="https://www.youtube.com/channel/UCZ2ZQ4Z0Z2Y5Z9Z2ZQZ2Z2Q"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
+            <a href="mailto:" target="_blank" rel="noopener noreferrer">
                 <img src="../assets/letters.svg" alt="email" />
             </a>
         </div>
