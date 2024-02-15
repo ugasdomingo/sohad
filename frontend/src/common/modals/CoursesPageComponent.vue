@@ -24,7 +24,7 @@ defineProps({
 
         <h2>Formación: {{ curso?.location }}</h2>
 
-        <a class="action-btn" href="#" target="_blank">Reservar Cupo</a>
+        <a class="action-btn" href="https://wa.me/584126696619" target="_blank">Reservar Cupo</a>
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 export const coursesInfo = [
     {
         id: 1,
-        name: 'Mini Lipo Escultura con Técnica Endolifting',
+        name: 'Mini Lipo Escultura con Técnica Endolaser',
         description:
             'Un procedimiento que redefine la forma en que abordamos la eliminación definitiva de la grasa en áreas problemáticas. Con experiencia práctica a través de videos de casos clínicos y la potencia del Láser Diodo de Fibra Óptica. Incluye la posibilidad de adquirir nuestro último equipo láser, diseñado para proporcionar reafirmación y efecto lipólisis de manera integral.',
         image: 'https://res.cloudinary.com/minteados/image/upload/v1692375030/Cursos/yddvji5ej3evntf2tj3u.webp',
