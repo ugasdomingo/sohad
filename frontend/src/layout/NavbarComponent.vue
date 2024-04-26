@@ -5,13 +5,20 @@ defineProps({
         required: true
     }
 });
+
+const menuItems = [
+    { name: 'Inicio', path: '/' },
+    { name: 'Cursos', path: '/cursos' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Escritorio', path: '/escritorio' }
+];
 </script>
 
 <template>
     <nav :class="menuType == 'normal' ? 'navegation' : 'responsive'">
-        <a href="#cursos">Cursos</a>
-        <a href="#nosotros">Sobre mi</a>
-        <a href="#contacto">Contacto</a>
+        <RouterLink v-for="item in menuItems" :key="item.name" :to="item.path">
+            {{ item.name }}
+        </RouterLink>
     </nav>
 </template>
 

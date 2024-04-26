@@ -1,5 +1,5 @@
 //Import tools
-import Course from '../models/Course';
+import { CourseModel } from '../models/Course';
 import { uploadImage, deleteImage } from '../utils/cloudinary';
 import fs from 'fs-extra';
 
@@ -12,7 +12,7 @@ import fs from 'fs-extra';
 // getAllCourse Controller
 export const getAllCourse = async (req: any, res: any) => {
     try {
-        const courses = await Course.find();
+        const courses = await CourseModel.find();
         return res.status(200).json({ courses });
     } catch (error: any) {
         console.log(error);
@@ -33,7 +33,7 @@ export const createCourse = async (req: any, res: any) => {
             videoUrl,
         } = req.body;
 
-        const course = new Course({
+        const course = new CourseModel({
             courseName,
             description,
             initialDate,
@@ -65,7 +65,7 @@ export const createCourse = async (req: any, res: any) => {
 // getCourse Controller
 export const getCourse = async (req: any, res: any) => {
     try {
-        const course = await Course.findById(req.params.id);
+        const course = await CourseModel.findById(req.params.id);
 
         if (!course)
             return res.status(404).json({ message: 'Course no encontrado' });
@@ -78,12 +78,12 @@ export const getCourse = async (req: any, res: any) => {
 // deleteCourse Controller
 export const deleteCourse = async (req: any, res: any) => {
     try {
-        const course = await Course.findByIdAndDelete(req.params.id);
+        const course = await CourseModel.findByIdAndDelete(req.params.id);
 
         if (!course)
             return res.status(404).json({ message: 'Course no encontrado' });
 
-        await deleteImage(course.coverImage);
+        await deleteImage(course.coverImage?.public_id);
         res.status(200).json({ course });
     } catch (error) {
         return res.status(500).json({ message: 'Formato id inválido' });
@@ -93,7 +93,7 @@ export const deleteCourse = async (req: any, res: any) => {
 // updateCourse Controller
 export const updateCourse = async (req: any, res: any) => {
     try {
-        const updatedCourse = await Course.findByIdAndUpdate(
+        const updatedCourse = await CourseModel.findByIdAndUpdate(
             req.params.id,
             req.body,
             { new: true }

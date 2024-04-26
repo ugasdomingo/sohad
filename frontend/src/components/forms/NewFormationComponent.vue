@@ -9,23 +9,35 @@ const courseStore = useCourseStore();
 //loadings
 const loading = ref(false);
 
-//Get data
+//Deefine Inteerfaces
+export interface ICourse {
+    _id: string;
+    courseName: string;
+    description: string;
+    initialDate: string;
+    duration: string;
+    finalDate: string;
+    price: string;
+    location: string;
+    coverImage: {
+        public_id: string;
+        secure_url: string;
+    };
+    videoUrl: string;
+}
+
+//Define variables
 const courseName = ref('');
 const description = ref('');
 const initialDate = ref('');
 const duration = ref('');
+const finalDate = ref('');
 const price = ref('');
 const location = ref('');
-const coverImage = ref();
+const coverImage = ref<File | null>(null);
 const videoUrl = ref('');
 
 //Functions
-const handleImageUpload = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-    const file = target.files?.[0];
-    coverImage.value = file;
-};
-
 const handleSubmit = async () => {
     try {
         loading.value = true;
@@ -35,20 +47,13 @@ const handleSubmit = async () => {
         formData.append('description', description.value);
         formData.append('initialDate', initialDate.value);
         formData.append('duration', duration.value);
+        formData.append('finalDate', finalDate.value);
         formData.append('price', price.value);
         formData.append('location', location.value);
-        formData.append('coverImage', coverImage.value);
+        formData.append('coverImage', coverImage.value as File);
         formData.append('videoUrl', videoUrl.value);
 
         await courseStore.createCourse(formData);
-
-        courseName.value = '';
-        description.value = '';
-        initialDate.value = '';
-        duration.value = '';
-        price.value = '';
-        location.value = '';
-        videoUrl.value = '';
 
         alert('Curso creado correctamente');
     } catch (error) {
@@ -65,36 +70,57 @@ const handleSubmit = async () => {
         <h2>Crear curso</h2>
         <form @submit.prevent="handleSubmit">
             <div class="input-group">
-                <label for="courseName">Nombre del curso</label>
-                <input type="text" id="courseName" v-model="courseName" required />
+                <input
+                    type="text"
+                    id="courseName"
+                    v-model="courseName"
+                    required
+                    placeholder="Nombre del Curso"
+                />
+                <input
+                    type="text"
+                    id="initialDate"
+                    v-model="initialDate"
+                    required
+                    placeholder="Fecha de inicio"
+                />
+                <input
+                    type="text"
+                    id="duration"
+                    v-model="duration"
+                    required
+                    placeholder="Duración"
+                />
+                <input
+                    type="text"
+                    id="finalDate"
+                    v-model="finalDate"
+                    required
+                    placeholder="Fecha de finalización"
+                />
+                <input type="text" id="price" v-model="price" required placeholder="Precio" />
+                <input
+                    type="text"
+                    id="location"
+                    v-model="location"
+                    required
+                    placeholder="Ubicación"
+                />
+                <input
+                    type="file"
+                    id="coverImage"
+                    @change="coverImage = $event.target?.files[0] || null"
+                    required
+                />
+                <input
+                    type="text"
+                    id="videoUrl"
+                    v-model="videoUrl"
+                    required
+                    placeholder="URL del video"
+                />
             </div>
-            <div class="input-group">
-                <label for="description">Descripción</label>
-                <textarea id="description" v-model="description" required />
-            </div>
-            <div class="input-group">
-                <label for="initialDate">Fecha de inicio</label>
-                <input type="date" id="initialDate" v-model="initialDate" required />
-            </div>
-            <div class="input-group">
-                <label for="duration">Duración</label>
-                <input type="text" id="duration" v-model="duration" />
-            </div>
-            <div class="input-group">
-                <label for="price">Precio</label>
-                <input type="text" id="price" v-model="price" />
-            </div>
-            <div class="input-group">
-                <label for="location">Ubicación</label>
-                <input type="text" id="location" v-model="location" required />
-            </div>
-            <div class="input-group">
-                <input @change="handleImageUpload" type="file" placeholder="Portada" required />
-            </div>
-            <div class="input-group">
-                <label for="videoUrl">Video de presentación</label>
-                <input type="text" id="videoUrl" v-model="videoUrl" />
-            </div>
+
             <button type="submit" :disabled="loading">Crear curso</button>
         </form>
     </div>
@@ -102,6 +128,8 @@ const handleSubmit = async () => {
 
 <style scoped lang="scss">
 .create-course {
+    width: 70%;
+    margin: 2rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,6 +143,8 @@ const handleSubmit = async () => {
     form {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        gap: 1.5rem;
 
         .input-group {
             display: flex;
@@ -145,6 +175,12 @@ const handleSubmit = async () => {
             cursor: pointer;
         }
     }
+}
+
+.ck-editor__editable {
+    min-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 //Responsive

@@ -36,25 +36,33 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 footer {
-    max-height: 5rem;
+    max-height: 2.5rem;
+    width: 100%;
     box-sizing: border-box;
     align-items: center;
     padding: 0 2rem;
-    position: sticky;
     bottom: 0;
     z-index: 1;
     display: none;
 
     h2 {
+        font-size: 1.25rem;
         font-weight: 500;
         color: var(--color-accent);
     }
 
     p {
+        font-size: 1.25rem;
         opacity: 0.5;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.25rem 1rem;
     }
 }
 .background-white {
+    font-size: 1.25rem;
     background-color: rgba(255, 255, 255, 0.877);
     box-shadow: 0 0 1em var(--color-tertiary);
     display: flex;

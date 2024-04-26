@@ -4,11 +4,12 @@ import bcryptjs from 'bcryptjs';
 
 //Create Schema Methods Definitions
 interface IUserDocument extends Document {
-    date: string;
     name: string;
     email: string;
     password: string;
     role: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface IUser extends IUserDocument {
@@ -18,32 +19,31 @@ export interface IUser extends IUserDocument {
 interface IUserModel extends Model<IUserDocument, {}> {}
 
 //Create User Schema
-const userSchema = new Schema({
-    date: {
-        type: String,
-        requiered: true,
+const userSchema = new Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        email: {
+            type: String,
+            required: true,
+            trim: true,
+            unique: true,
+            lowercase: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        },
+        role: {
+            type: String,
+            default: 'User',
+        },
     },
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        trim: true,
-        unique: true,
-        lowercase: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    role: {
-        type: String,
-        default: 'User',
-    },
-});
+    { timestamps: true }
+);
 
 //Schema methods
 userSchema.pre('save', async function (next) {

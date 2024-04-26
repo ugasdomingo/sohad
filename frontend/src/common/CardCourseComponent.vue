@@ -1,13 +1,4 @@
 <script setup lang="ts">
-// Import tool
-import { ref } from 'vue';
-
-//Import components
-import CoursesPageComponent from './modals/CoursesPageComponent.vue';
-
-// Set variables
-const showMoreInfo = ref(false);
-
 //Get data from props
 defineProps({
     curso: {
@@ -30,10 +21,9 @@ defineProps({
                 </p>
             </div>
 
-            <button @click="showMoreInfo = !showMoreInfo">Más Información</button>
+            <RouterLink :to="'/cursos/' + curso?.id" class="btn">Ver más</RouterLink>
         </div>
     </div>
-    <CoursesPageComponent v-if="showMoreInfo" :curso="curso" class="more-info" />
 </template>
 
 <style scoped lang="scss">
@@ -88,7 +78,7 @@ li {
     font-size: 01rem;
     font-weight: 300;
 }
-button {
+.btn {
     background-color: #000;
     color: #fff;
     border: none;

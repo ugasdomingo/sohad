@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Import tool
+import { useUtilsStore } from '../../stores/utils-store';
 //Get data from props
 defineProps({
     curso: {
@@ -6,10 +8,14 @@ defineProps({
         required: true
     }
 });
+
+// Set variables
+const utilsStore = useUtilsStore();
 </script>
 
 <template>
-    <div class="course-info">
+    <div class="modal-course-info">
+        <img src="" alt="cerrar" @click="utilsStore.courseModal = false" />
         <!-- //Informacio emergente -->
         <h2>
             Lo que aprenderás en <br />
@@ -25,73 +31,60 @@ defineProps({
         <h2>Formación: {{ curso?.location }}</h2>
 
         <a class="action-btn" href="https://wa.me/584126696619" target="_blank">Reservar Cupo</a>
+        <button @click="utilsStore.courseModal = false">Cerrar</button>
     </div>
 </template>
 
 <style scoped lang="scss">
-.course-info {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.modal-course-info {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 60%;
-    padding: 1rem;
+    min-height: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    z-index: 100;
+    color: white;
+    padding: 1rem;
+    //Scroll interno
+    overflow-y: auto;
+
+    img {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
 
     h2 {
         font-size: 2rem;
-        font-weight: bold;
         margin: 1rem 0;
-        text-align: center;
-        color: var(--color-accent);
     }
 
     ul {
+        list-style: none;
         padding: 0;
         margin: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        li {
-            width: 75%;
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            background-color: #eee;
-        }
     }
 
-    p {
-        width: 80%;
+    li {
         margin: 0.5rem 0;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        background-color: #eee;
     }
 
     .action-btn {
-        width: 50%;
-        margin: 0.5rem 0;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        background-color: var(--color-accent);
-        text-align: center;
+        background-color: #f1c40f;
+        color: black;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        margin: 1rem 0;
         text-decoration: none;
-        color: whitesmoke;
-        font-weight: bold;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .course-info {
-        width: 90%;
-
-        h2 {
-            font-size: 1.5rem;
-        }
     }
 }
 </style>

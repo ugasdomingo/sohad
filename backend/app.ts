@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 //Import Routes
 import authRouter from './src/routes/authRouter';
 import coursesRouter from './src/routes/courseRouter';
-import enrollmentRouter from './src/routes/enrollmentRouter';
+import postRouter from './src/routes/postRouter';
 
 //Define app
 const app = express();
@@ -40,7 +40,7 @@ app.use(cookieParser());
 //Routes
 app.use('/api/v1/', authRouter);
 app.use('/api/v1/courses', coursesRouter);
-app.use('/api/v1/enrollments', enrollmentRouter);
+app.use('/api/v1/posts', postRouter);
 
 //Export app
 export default app;

@@ -1,11 +1,9 @@
 <script setup lang="ts">
 //Import tools
 import { ref } from 'vue';
-import { useUtilsStore } from '../../stores/utils-store';
 import { useUserStore } from '../../stores/user-store';
 
 //Activate tools
-const utilsStore = useUtilsStore();
 const userStore = useUserStore();
 
 //Get data
@@ -42,11 +40,6 @@ const handleSubmit = async () => {
             </div>
             <button type="submit" :disabled="loading">Iniciar sesión</button>
         </form>
-
-        <div class="register">
-            <p>¿No tienes cuenta?</p>
-            <button @click="utilsStore.isUser = false">Regístrate</button>
-        </div>
     </div>
 </template>
 
@@ -94,25 +87,6 @@ const handleSubmit = async () => {
             margin: 0.5rem 0;
             background-color: var(--color-accent);
             color: white;
-            font-weight: 500;
-            cursor: pointer;
-        }
-    }
-
-    .register {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 1rem;
-
-        p {
-            margin-right: 0.5rem;
-        }
-
-        button {
-            background-color: transparent;
-            border: none;
-            color: var(--color-accent);
             font-weight: 500;
             cursor: pointer;
         }

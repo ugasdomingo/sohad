@@ -28,10 +28,6 @@ export const register = async (req: any, res: any) => {
             password,
         });
 
-        //Get date
-        const today = new Date(Date.now());
-        user.date = today.toISOString();
-
         await user.save();
 
         //Email Validation

@@ -9,10 +9,10 @@ cloudinary.config({
 
 export async function uploadImage(filePath: any) {
     return await cloudinary.uploader.upload(filePath, {
-        folder: 'Cursos',
+        folder: 'sohad',
     });
 }
 
-export async function deleteImage(image: any) {
-    return await cloudinary.uploader.destroy(image?.public_id);
+export async function deleteImage(public_id: any) {
+    return await cloudinary.uploader.destroy(public_id);
 }

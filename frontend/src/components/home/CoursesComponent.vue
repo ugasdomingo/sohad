@@ -1,13 +1,10 @@
 <script setup lang="ts">
-// Import tool
-import { coursesInfo } from '../static/coursesInfo';
+//Import tools
+import { onBeforeMount } from 'vue';
+import { useCourseStore } from '../../stores/course-store';
 
 // Import components
-import CardCourseComponent from '../common/CardCourseComponent.vue';
-/* //Import tools
-import { onBeforeMount } from 'vue';
-import { useCourseStore } from '../stores/course-store';
-
+import CardCourseComponent from '../../common/CardCourseComponent.vue';
 
 // Activate tools
 const courseStore = useCourseStore();
@@ -15,13 +12,13 @@ const courseStore = useCourseStore();
 // Fetch data
 onBeforeMount(() => {
     courseStore.getAllCourse(3);
-}); */
+});
 </script>
 
 <template>
     <section class="courses" id="cursos">
         <h2>Cursos Disponibles</h2>
-        <div v-for="course in coursesInfo" :key="course.id" class="card-container">
+        <div v-for="course in courseStore.allCourse" :key="course.id" class="card-container">
             <CardCourseComponent :curso="course" />
         </div>
     </section>
