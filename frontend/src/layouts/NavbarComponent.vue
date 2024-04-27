@@ -5,15 +5,15 @@ import { RouterLink } from 'vue-router';
 <template>
     <nav>
         <RouterLink to="/cursos">
-            <img src="../assets/course-icon.svg" alt="icono cursos" />
+            <img src="icons/course-icon.svg" alt="icono cursos" />
             <h3>Cursos</h3>
         </RouterLink>
         <RouterLink to="/blog">
-            <img src="../assets/blog-icon.svg" alt="icono blog" />
+            <img src="icons/blog-icon.svg" alt="icono blog" />
             <h3>Blog</h3>
         </RouterLink>
         <RouterLink to="sobre-mi">
-            <img src="../assets/about-icon.svg" alt="icono contacto" />
+            <img src="icons/about-icon.svg" alt="icono contacto" />
             <h3>Sobre mi</h3>
         </RouterLink>
         <section class="social">
@@ -25,7 +25,7 @@ import { RouterLink } from 'vue-router';
                     rel="noopener noreferrer"
                     class="icon"
                 >
-                    <img src="src/assets/instagram.svg" alt="Instagram" />
+                    <img src="icons/instagram.svg" alt="Instagram" />
                 </a>
                 <a
                     href="https://wa.me/584126696619"
@@ -33,7 +33,7 @@ import { RouterLink } from 'vue-router';
                     rel="noopener noreferrer"
                     class="icon"
                 >
-                    <img src="src/assets/whatsapp.svg" alt="WhatsApp" />
+                    <img src="icons/whatsapp.svg" alt="WhatsApp" />
                 </a>
                 <a
                     href="mailto:"
@@ -41,7 +41,7 @@ import { RouterLink } from 'vue-router';
                     rel="noopener noreferrer"
                     class="icon"
                 >
-                    <img src="src/assets/letters.svg" alt="email" />
+                    <img src="icons/letters.svg" alt="email" />
                 </a>
             </div>
         </section>

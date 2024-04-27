@@ -2,7 +2,7 @@
 
 <template>
     <section class="contact" id="contacto">
-        <img src="src/assets/img/hero.webp" alt="Hero" class="img-hero-big" />
+        <img src="img/hero.webp" alt="Hero" class="img-hero-big" />
         <h2>Contáctame</h2>
         <div class="icon-container">
             <a
@@ -10,17 +10,17 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <img src="src/assets/instagram.svg" alt="Instagram" />
+                <img src="icons/instagram.svg" alt="Instagram" />
             </a>
             <a
                 href="https://wa.me/584126696619"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <img src="src/assets/whatsapp.svg" alt="WhatsApp" />
+                <img src="icons/whatsapp.svg" alt="WhatsApp" />
             </a>
             <a href="mailto:" target="_blank" rel="noopener noreferrer">
-                <img src="src/assets/letters.svg" alt="email" />
+                <img src="icons/letters.svg" alt="email" />
             </a>
         </div>
     </section>
