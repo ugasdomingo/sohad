@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import { useCourseStore } from 'src/stores/course-store';
+import { usePostStore } from 'src/stores/post-store';
 import { useRoute } from 'vue-router';
 //Get data from props
 defineProps({
-    curso: {
+    post: {
         type: Object,
         required: true,
     },
 });
 
-const courseStore = useCourseStore();
+const postStore = usePostStore();
 const route = useRoute();
 const path = route.path;
 
-const deleteCourse = async (id: string) => {
-    await courseStore.deleteCourse(id);
-    await courseStore.getAllCourse();
+const deletePost = async (id: string) => {
+    await postStore.deletePost(id);
+    await postStore.getAllPost();
 };
 </script>
 
 <template>
     <div class="card">
-        <h2 class="card-title">{{ curso?.courseName }}</h2>
-        <img :src="curso?.coverImage.secure_url" :alt="curso?.name" />
-        <RouterLink :to="'/cursos/' + curso?._id" class="btn">
-            Saber más
+        <h2 class="card-title">{{ post?.title }}</h2>
+        <img :src="post?.coverImage.secure_url" :alt="post?.title" />
+        <RouterLink :to="'/posts/' + post?._id" class="btn">
+            Leer más
         </RouterLink>
         <q-btn
             v-if="path === '/escritorio'"
             label="Eliminar"
             color="negative"
-            @click="deleteCourse(curso._id)"
+            @click="deletePost(post._id)"
         />
     </div>
 </template>

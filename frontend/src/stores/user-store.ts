@@ -1,6 +1,6 @@
 //Import tools
 import { defineStore } from 'pinia';
-import { api } from '../services/axios';
+import { api } from '../boot/axios';
 import { ref } from 'vue';
 
 export const useUserStore = defineStore('user', () => {
@@ -22,13 +22,13 @@ export const useUserStore = defineStore('user', () => {
         try {
             const res = await api.post('/login', {
                 email: email,
-                password: password
+                password: password,
             });
             token.value = res.data.token;
             expiresIn.value = res.data.expiresIn;
             userRole.value = res.data.userRole;
             userName.value = res.data.userName;
-            localStorage.setItem('user', 'Algo');
+            localStorage.setItem('user', res.data.userRole);
             localStorage.setItem('userR', res.data.refreshToken);
             setTime();
         } catch (error: any) {
@@ -47,13 +47,13 @@ export const useUserStore = defineStore('user', () => {
             const res = await api.post('/register', {
                 name,
                 email,
-                password
+                password,
             });
             token.value = res.data.token;
             expiresIn.value = res.data.expiresIn;
             userRole.value = res.data.role;
             userName.value = res.data.name;
-            localStorage.setItem('user', 'Algo');
+            localStorage.setItem('user', res.data.userRole);
             localStorage.setItem('userR', res.data.refreshToken);
             setTime();
         } catch (error: any) {
@@ -86,8 +86,8 @@ export const useUserStore = defineStore('user', () => {
                 url: '/self',
                 method: 'GET',
                 headers: {
-                    Authorization: 'Bearer ' + token.value
-                }
+                    Authorization: 'Bearer ' + token.value,
+                },
             });
             if (resp) {
                 selfUid.value = resp.data.uid;
@@ -98,13 +98,10 @@ export const useUserStore = defineStore('user', () => {
     };
 
     const setTime = () => {
-        setTimeout(
-            () => {
-                console.log('se refrescó');
-                refreshToken();
-            },
-            expiresIn.value * 1000 - 6000
-        );
+        setTimeout(() => {
+            console.log('se refrescó');
+            refreshToken();
+        }, expiresIn.value * 1000 - 6000);
     };
 
     const refreshToken = async () => {
@@ -113,13 +110,13 @@ export const useUserStore = defineStore('user', () => {
 
         try {
             const res = await api.get('/refresh', {
-                headers: { Authorization: `Bearer ${refreshToken}` }
+                headers: { Authorization: `Bearer ${refreshToken}` },
             });
             token.value = res.data.token;
             expiresIn.value = res.data.expiresIn;
             userRole.value = res.data.role;
             userName.value = res.data.name;
-            localStorage.setItem('user', 'Algo');
+            localStorage.setItem('user', res.data.userRole);
             localStorage.setItem('userR', res.data.refreshToken);
             setTime();
         } catch (error: any) {
@@ -139,8 +136,8 @@ export const useUserStore = defineStore('user', () => {
                 url: '/',
                 method: 'GET',
                 headers: {
-                    Authorization: 'Bearer ' + token.value
-                }
+                    Authorization: 'Bearer ' + token.value,
+                },
             });
 
             allUsers.value = res.data.user;
@@ -159,7 +156,7 @@ export const useUserStore = defineStore('user', () => {
         try {
             const res = await api({
                 url: '/' + id,
-                method: 'GET'
+                method: 'GET',
             });
             return res.data.name;
         } catch (error: any) {
@@ -177,7 +174,7 @@ export const useUserStore = defineStore('user', () => {
         try {
             const res = await api({
                 url: '/user/' + email,
-                method: 'GET'
+                method: 'GET',
             });
             return res.data.name;
         } catch (error: any) {
@@ -216,6 +213,6 @@ export const useUserStore = defineStore('user', () => {
         password,
         politiquesAccepted,
         userRole,
-        userName
+        userName,
     };
 });

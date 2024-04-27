@@ -1,80 +1,46 @@
 <script setup lang="ts">
 //Import tools
 import { ref } from 'vue';
-import { useCourseStore } from '../../stores/course-store';
+import { usePostStore } from 'src/stores/post-store';
 
 //Activate tools
-const courseStore = useCourseStore();
-
-//loadings
-const loading = ref(false);
+const postStore = usePostStore();
 
 //Define variables
-const courseName = ref('');
-const description = ref('');
-const initialDate = ref('');
-const duration = ref('');
-const price = ref('');
-const location = ref('');
+const title = ref('');
+const content = ref('');
 const coverImage = ref();
-const videoUrl = ref('');
 
 //Functions
 const handleSubmit = async () => {
     try {
-        loading.value = true;
-
         const formData = new FormData();
-        formData.append('courseName', courseName.value);
-        formData.append('description', description.value);
-        formData.append('initialDate', initialDate.value);
-        formData.append('duration', duration.value);
-        formData.append('price', price.value);
-        formData.append('location', location.value);
+        formData.append('title', title.value);
+        formData.append('content', content.value);
         formData.append('coverImage', coverImage.value);
-        formData.append('videoUrl', videoUrl.value);
 
-        await courseStore.createCourse(formData);
+        await postStore.createPost(formData);
 
-        alert('Curso creado correctamente');
+        alert('Post creado correctamente');
     } catch (error) {
         console.log(error);
-        alert('Error al crear el curso');
-    } finally {
-        loading.value = false;
+        alert('Error al crear el post');
     }
 };
 </script>
 
 <template>
-    <div class="create-course">
-        <h2>Crear curso</h2>
+    <div class="new-post">
+        <h2>Crear post</h2>
         <form @submit.prevent="handleSubmit">
             <q-input
-                v-model="courseName"
-                label="Nombre del curso"
+                v-model="title"
+                label="Título del post"
                 outlined
                 required
             />
-            <q-input
-                v-model="initialDate"
-                label="Fecha de inicio"
-                type="date"
-                outlined
-                required
-            />
-            <q-input v-model="duration" label="Duración" outlined required />
-            <q-input v-model="price" label="Precio" outlined required />
-            <q-input v-model="location" label="Modalidad" outlined required />
-            <q-input
-                v-model="videoUrl"
-                label="URL del video"
-                outlined
-                required
-            />
-            <q-file v-model="coverImage" outlined required label="Portada" />
             <q-editor
-                v-model="description"
+                v-model="content"
                 :dense="$q.screen.lt.md"
                 :toolbar="[
                     [
@@ -169,10 +135,15 @@ const handleSubmit = async () => {
                     verdana: 'Verdana',
                 }"
             />
-
+            <q-file
+                v-model="coverImage"
+                label="Imagen de portada"
+                outlined
+                required
+            />
             <q-btn
                 type="submit"
-                label="Crear Curso"
+                label="Crear post"
                 color="primary"
                 class="submit-button"
             />
@@ -181,58 +152,40 @@ const handleSubmit = async () => {
 </template>
 
 <style scoped lang="scss">
-.create-course {
+.new-post {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     box-sizing: border-box;
+    padding: 4rem 2rem;
+    margin: 2rem 0;
 
     h2 {
-        font-weight: 500;
-        color: $accent;
+        text-align: center;
+        font-size: 5rem;
+        font-weight: 700;
+        margin: 1rem 0;
+        color: $primary;
     }
 
     form {
         display: flex;
         flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
 
-        .q-input {
-            margin: 0.5rem 0;
-        }
-
-        .q-editor {
-            margin: 0.5rem 0;
-        }
-
-        button {
-            margin: 0.5rem 0;
+        .submit-button {
+            align-self: center;
         }
     }
 }
 
-//Responsive
 @media screen and (max-width: 768px) {
-    //Scroll modal
-    .create-course {
-        width: 100%;
+    .new-post {
         padding: 2rem 1rem;
-
         h2 {
-            font-size: 2rem;
-            margin: 0;
-        }
-
-        form {
-            width: 100%;
-            box-sizing: border-box;
-            input {
-                margin: 0.5rem 0;
-            }
-
-            button {
-                margin: 0.5rem 0;
-            }
+            font-size: 3rem;
+            text-align: center;
         }
     }
 }

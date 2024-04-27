@@ -1,6 +1,6 @@
 //Import tools
 import { defineStore } from 'pinia';
-import { api } from '../services/axios';
+import { api } from '../boot/axios';
 import { ref } from 'vue';
 import { useUserStore } from './user-store';
 
@@ -10,23 +10,14 @@ export const useCourseStore = defineStore('course', () => {
     const allCourseByCategory = ref();
     const oneCourse = ref();
 
-    const getAllCourse = async (showItems: number) => {
+    const getAllCourse = async () => {
         try {
             const res = await api({
                 url: '/courses/all',
-                method: 'GET'
+                method: 'GET',
             });
 
-            if (showItems == 0) {
-                allCourse.value = res.data.courses;
-            } else {
-                //Get last Posts
-                const finalArray = res.data.courses.reverse();
-
-                finalArray.length = showItems;
-
-                allCourse.value = finalArray;
-            }
+            allCourse.value = res.data.courses;
         } catch (error: any) {
             throw error.response?.data || error;
         }
@@ -36,7 +27,7 @@ export const useCourseStore = defineStore('course', () => {
         try {
             const res = await api({
                 url: `/courses/${category}`,
-                method: 'GET'
+                method: 'GET',
             });
 
             allCourseByCategory.value = res.data.courses;
@@ -52,9 +43,9 @@ export const useCourseStore = defineStore('course', () => {
                 method: 'POST',
                 headers: {
                     Authorization: 'Bearer ' + userStore.token,
-                    'Content-Type': 'multipart/form-data'
+                    'Content-Type': 'multipart/form-data',
                 },
-                data: course
+                data: course,
             });
 
             return res.data;
@@ -67,7 +58,7 @@ export const useCourseStore = defineStore('course', () => {
         try {
             const res = await api({
                 url: `/courses/${courseId}`,
-                method: 'GET'
+                method: 'GET',
             });
 
             oneCourse.value = res.data.course;
@@ -82,9 +73,9 @@ export const useCourseStore = defineStore('course', () => {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + userStore.token,
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
             },
-            data: course
+            data: course,
         });
     };
 
@@ -94,8 +85,8 @@ export const useCourseStore = defineStore('course', () => {
             method: 'DELETE',
             headers: {
                 Authorization: 'Bearer ' + userStore.token,
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+            },
         });
     };
 
@@ -105,9 +96,10 @@ export const useCourseStore = defineStore('course', () => {
         oneCourse,
         getAllCourse,
         getAllCourseByCategory,
+
         createCourse,
         getOneCourse,
         updateCourse,
-        deleteCourse
+        deleteCourse,
     };
 });

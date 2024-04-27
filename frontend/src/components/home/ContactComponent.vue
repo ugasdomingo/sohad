@@ -2,7 +2,7 @@
 
 <template>
     <section class="contact" id="contacto">
-        <img src="../assets/img/hero.webp" alt="Hero" class="img-hero-big" />
+        <img src="src/assets/img/hero.webp" alt="Hero" class="img-hero-big" />
         <h2>Contáctame</h2>
         <div class="icon-container">
             <a
@@ -10,13 +10,17 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                <img src="../assets/instagram.svg" alt="Instagram" />
+                <img src="src/assets/instagram.svg" alt="Instagram" />
             </a>
-            <a href="https://wa.me/584126696619" target="_blank" rel="noopener noreferrer">
-                <img src="../assets/whatsapp.svg" alt="WhatsApp" />
+            <a
+                href="https://wa.me/584126696619"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="src/assets/whatsapp.svg" alt="WhatsApp" />
             </a>
             <a href="mailto:" target="_blank" rel="noopener noreferrer">
-                <img src="../assets/letters.svg" alt="email" />
+                <img src="src/assets/letters.svg" alt="email" />
             </a>
         </div>
     </section>
@@ -24,11 +28,10 @@
 
 <style scoped lang="scss">
 .contact {
+    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     padding: 4rem 2rem;
     line-height: 1.5;
@@ -39,10 +42,11 @@
         rgba(191, 144, 4, 0.5) 100%
     );
     h2 {
+        text-align: center;
         font-size: 5rem;
         font-weight: 700;
         margin: 1rem 0;
-        color: var(--color-primary);
+        color: $primary;
     }
     .icon-container {
         display: flex;
@@ -50,9 +54,10 @@
         justify-content: center;
         align-items: center;
         margin: 1rem 0;
+        gap: 3rem;
         img {
-            width: 3rem;
-            height: 3rem;
+            width: 3.5rem;
+            height: 3.5rem;
             margin: 0 1rem;
             transition: all 0.3s ease-in-out;
             &:hover {
@@ -81,8 +86,8 @@
         }
         .icon-container {
             img {
-                width: 2rem;
-                height: 2rem;
+                width: 3rem;
+                height: 3rem;
             }
         }
     }
