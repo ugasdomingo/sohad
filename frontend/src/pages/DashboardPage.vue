@@ -5,10 +5,6 @@ import NewPostComponent from 'src/components/forms/NewPostComponent.vue';
 import PostsComponent from 'src/components/home/PostsComponent.vue';
 import CoursesComponent from 'src/components/home/CoursesComponent.vue';
 
-const addPost = ref(false);
-const addCourse = ref(false);
-const allPost = ref(false);
-const allCourses = ref(false);
 const showIn = ref(0);
 </script>
 
